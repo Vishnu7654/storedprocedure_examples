@@ -1,0 +1,36 @@
+vishnu=# CREATE PROCEDURE insertrecord(stu_id int,stu_name text,stu_age int ,stu_adr char(30))
+vishnu-# LANGUAGE 'plpgsql'
+vishnu-# AS $$
+vishnu$# BEGIN 
+vishnu$# INSERT INTO public.student(stu_id ,stu_name,stu_age,stu_adr) VALUES ($1,$2,$3,$4);
+vishnu$# COMMIT;
+vishnu$# END;
+vishnu$# $$;
+CREATE PROCEDURE
+vishnu=# CALL insertrecord(105,'raja',23,'hyderabad');
+CALL
+vishnu=# select * from student;
+ stu_id |       stu_name       | stu_age |       stu_adr        
+--------+----------------------+---------+----------------------
+    101 | vishnu               |      23 | banglore            
+    102 | vardhan              |      22 | banglore            
+    104 | abhi                 |      26 | banglore            
+    103 | siddu                |      25 | banglore            
+      1 | giri                 |      25 | chennai             
+    105 | raja                 |      23 | hyderabad           
+(6 rows)
+
+
+before student table:
+=======================
+
+vishnu=# select * from student;
+ stu_id |       stu_name       | stu_age |       stu_adr        
+--------+----------------------+---------+----------------------
+    101 | vishnu               |      23 | banglore            
+    102 | vardhan              |      22 | banglore            
+    104 | abhi                 |      26 | banglore            
+    103 | siddu                |      25 | banglore            
+      1 | giri                 |      25 | chennai             
+(5 rows)
+

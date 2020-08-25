@@ -1,0 +1,21 @@
+vishnu=# CREATE PROCEDURE transaction(sender int, receiver int,amount dec)
+vishnu-# LANGUAGE 'plpgsql'
+vishnu-# AS $$
+vishnu$# BEGIN 
+vishnu$# UPDATE accounts
+vishnu$# set balance = balance + amount
+vishnu$# where id = receiver ;
+vishnu$# commit;
+vishnu$# END;
+vishnu$# $$;
+CREATE PROCEDURE
+vishnu=# CALL transaction(2,3,500);
+CALL
+vishnu=# select * from accounts;
+ id |  name  | balance  
+----+--------+----------
+  2 | tarak  | 10000.00
+  1 | vishnu |  9000.00
+  3 | siddu  | 10500.00
+(3 rows)
+

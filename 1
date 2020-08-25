@@ -1,0 +1,21 @@
+vishnu=# CREATE PROCEDURE control_transaction()
+vishnu-# LANGUAGE plpgsql
+vishnu-# AS $$
+vishnu$# DECLARE
+vishnu$# BEGIN
+vishnu$# CREATE TABLE test1(id int);
+vishnu$# INSERT INTO test1 VALUES (1);
+vishnu$# COMMIT;
+vishnu$# CREATE TABLE test2 (id int);
+vishnu$# INSERT INTO test2 VALUES(1);
+vishnu$# ROLLBACK;
+vishnu$# END $$;
+CREATE PROCEDURE
+vishnu=# call control_transaction();
+CALL
+vishnu=# select relname from pg_class where relname like '%test%';
+ relname 
+---------
+ test1
+(1 row)
+
